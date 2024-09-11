@@ -1,10 +1,13 @@
 import re
 
 from rest_framework import serializers
+from rest_framework.relations import StringRelatedField
+
 from apps.advertisements.models import Advertisement
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
+    author = StringRelatedField(read_only=True)
     class Meta:
         model = Advertisement
         fields = '__all__'

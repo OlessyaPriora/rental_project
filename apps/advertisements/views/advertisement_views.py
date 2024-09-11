@@ -1,8 +1,6 @@
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
-from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from apps.advertisements.models import Advertisement
-from apps.advertisements.permission import IsLandlordOrReadOnly
+from apps.advertisements.permission import IsLandlordOrReadOnly, IsAuthorOrReadOnly
 from apps.advertisements.serializers.advertisement_serializer import AdvertisementSerializer
 
 
@@ -12,13 +10,16 @@ class AdvertisementListCreateGenericView(ListCreateAPIView):
     queryset = Advertisement.objects.all()
     permission_classes = [IsLandlordOrReadOnly]
 
+    def get_queryset(self):
+        return Advertisement.objects.filter(is_active=True)
+
 
 class AdvertisementRetrieveUpdateDestroyGenericView(RetrieveUpdateDestroyAPIView):
     serializer_class = AdvertisementSerializer
     queryset = Advertisement.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthorOrReadOnly]
 
-   def get_object(self):
+
 
 
 
