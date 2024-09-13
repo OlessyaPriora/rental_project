@@ -61,7 +61,9 @@ INSTALLED_APPS = [
     'apps.users.apps.UsersConfig',
     'rest_framework',
     'rest_framework_simplejwt',
-
+    'apps.advertisements.apps.AdvertisementsConfig',
+    # 'apps.bookings.apps.BookingsConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
