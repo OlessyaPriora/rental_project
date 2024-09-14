@@ -21,6 +21,8 @@ class AdvertisementListCreateGenericView(ListCreateAPIView):
     search_fields = ['title', 'description']
     ordering_fields = ['price', 'created_at']
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
     def get_queryset(self):
         return Advertisement.objects.filter(is_active=True)

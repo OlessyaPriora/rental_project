@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'apps.advertisements.apps.AdvertisementsConfig',
-    # 'apps.bookings.apps.BookingsConfig',
+    'apps.bookings.apps.BookingsConfig',
     'django_filters',
 ]
 

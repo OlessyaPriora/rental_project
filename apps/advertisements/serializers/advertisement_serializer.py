@@ -2,7 +2,6 @@ import re
 
 from rest_framework import serializers
 from rest_framework.relations import StringRelatedField
-
 from apps.advertisements.models import Advertisement
 
 
@@ -27,7 +26,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         return value
 
     def validate_city(self, value):
-        if not re.match(r'^([a-zA-Z]{2,50})$', value):
+        if not re.match(r'^([a-zA-Z ]{2,50})$', value):
             raise serializers.ValidationError('The city must be represented by alphabetic characters')
         return value
 
