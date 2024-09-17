@@ -1,10 +1,8 @@
 from datetime import timedelta
 from decimal import Decimal
-
 from django.db import models
 from rest_framework.exceptions import ValidationError
 from unicodedata import decimal
-
 from apps.advertisements.models import Advertisement
 from apps.users.models import User
 from apps.bookings.models import *
