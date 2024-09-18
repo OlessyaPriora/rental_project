@@ -1,11 +1,10 @@
 from datetime import datetime
 from rest_framework import serializers
 from rest_framework.relations import StringRelatedField
-
 from apps.bookings.models import Booking
 from apps.reviews.models import Review
 
-
+#для создания отзывов и рейтингов
 class ReviewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
@@ -13,9 +12,9 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         tenant = self.context['request'].user
-        advertiesement = data['advertisement']
+        advertisement = data['advertisement']
         booking = Booking.objects.filter(
-            advertisement=advertiesement,
+            advertisement=advertisement,
             tenant=tenant,
             status='confirmed',
             end_date__lte=datetime.date.today()).exists()
@@ -24,10 +23,11 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('You do not have permission to perform this action, because you have not booked this property')
 
         review = Review.objects.filter(
-            tenent=tenant,
-            advertisement=advertiesement).exists()
+            tenant=tenant,
+            advertisement=advertisement).exists()
         if review:
             raise serializers.ValidationError('You have already review about this property')
+        return data
 
     def validate_rating(self, value):
         if value < 1 or value > 5:

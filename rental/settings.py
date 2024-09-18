@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'apps.advertisements.apps.AdvertisementsConfig',
     'apps.bookings.apps.BookingsConfig',
+    'apps.reviews.apps.ReviewsConfig',
     'django_filters',
 ]
 
@@ -101,7 +102,7 @@ WSGI_APPLICATION = 'rental.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if env.bool('MYSQL', default=False):
+if env.bool('MYSQL', default=True):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',

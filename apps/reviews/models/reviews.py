@@ -6,8 +6,8 @@ from apps.users.models import User
 class Review(models.Model):
     tenant = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='tenant', related_name='reviews')
     advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    comment = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False) # Поле не может быть изменено пользователем
+    comment = models.TextField(null=True, blank=True) # Позволяет полю быть пустым, т.е. пользователь может не зап-ть его
     rating = models.IntegerField()
 
 

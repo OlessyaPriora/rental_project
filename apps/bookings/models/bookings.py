@@ -7,7 +7,6 @@ from apps.advertisements.models import Advertisement
 from apps.users.models import User
 from apps.bookings.models import *
 
-
 class Booking(models.Model):
     BOOKING_CHOICES = [
         ('pending', 'pending'),
@@ -20,9 +19,10 @@ class Booking(models.Model):
     start_date = models.DateField(verbose_name = 'start date')
     end_date = models.DateField(verbose_name = 'end date')
     status = models.CharField(max_length=10, default='pending', choices=BOOKING_CHOICES)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)#поле не может быть изменено пользователем в форме ввода
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
+#декоратор для подсчёта общей стоимости арендной платы
     @property
     def total_cost(self):
         return self.advertisement.price * (Decimal((self.end_date - self.start_date).days))

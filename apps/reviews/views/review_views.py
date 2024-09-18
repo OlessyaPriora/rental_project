@@ -8,7 +8,7 @@ from apps.reviews.serializers.review_serializer import *
 class ReviewCreateGenericView(CreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewCreateSerializer
-    permission_classes = (IsTenant)  # Проверяем, что пользователь арендовал жилье
+    permission_classes = [IsTenant]  # Проверяем, что пользователь арендовал жилье
 
 class ReviewListGenericView(ListAPIView):
     serializer_class = ReviewListSerializer
