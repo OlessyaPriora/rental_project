@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from rest_framework import serializers
 from rest_framework.relations import StringRelatedField
 from apps.bookings.models import Booking
@@ -17,7 +17,7 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
             advertisement=advertisement,
             tenant=tenant,
             status='confirmed',
-            end_date__lte=datetime.date.today()).exists()
+            end_date__lte=date.today()).exists()
 
         if not booking:
             raise serializers.ValidationError('You do not have permission to perform this action, because you have not booked this property')

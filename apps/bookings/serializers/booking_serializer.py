@@ -1,10 +1,8 @@
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 from rest_framework.relations import StringRelatedField
 from apps.advertisements.serializers.advertisement_serializer import AdvertisementSerializer
 from apps.bookings.models import Booking
 from django.utils import timezone
-import datetime
 from rest_framework.exceptions import ValidationError
 import datetime
 

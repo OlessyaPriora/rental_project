@@ -1,6 +1,5 @@
 from datetime import date
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView, CreateAPIView, ListAPIView, \
-    RetrieveUpdateAPIView
+from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from apps.bookings.permissions import IsTenant, IsLandlord
 from apps.bookings.serializers.booking_serializer import *

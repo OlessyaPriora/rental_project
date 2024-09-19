@@ -7,6 +7,7 @@ from apps.advertisements.models import Advertisement
 from apps.users.models import User
 from apps.bookings.models import *
 
+
 class Booking(models.Model):
     BOOKING_CHOICES = [
         ('pending', 'pending'),
@@ -34,11 +35,6 @@ class Booking(models.Model):
         ordering = ['created_at']
 
     def __str__(self):
-        return f'Booking {self.pk} for {self.advertisement} from {self.start_date} to {self.end_date} by {self.tenant.name} and landlord {self.landlord.name}'
+        return f'Booking {self.pk} for {self.advertisement} by {self.tenant.name}'
 
 
-    # @property
-    # def booking_dates(self):
-    #     bookings = Booking.objects.filter(advertisement=self.advertisement).exclude(pk=self.pk)
-    #     return [date for booking in bookings for date in
-    #             range(booking.start_date, booking.end_date + timedelta(days=1))]
